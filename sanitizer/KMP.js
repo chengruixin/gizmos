@@ -63,10 +63,11 @@ function Kmp(tested, pattern){
 
 (function main(){
     //test
-    let tested = "abababababa";
-    let pattern = "aba";
+    let tested = "<script> adsfa</script><script> adsfa</script><script> adsfa</script>";
+    let pattern = "<script>";
 
     let ans = Kmp(tested, pattern);
     console.log(ans);
+    console.log(tested.indexOf(pattern));
     return 0;
 })();
