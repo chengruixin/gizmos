@@ -63,11 +63,15 @@ function Kmp(tested, pattern){
 
 (function main(){
     //test
-    let tested = "<script> adsfa</script><script> adsfa</script><script> adsfa</script>";
-    let pattern = "<script>";
+    let tested =require("./cases/html");
 
-    let ans = Kmp(tested, pattern);
-    console.log(ans);
-    console.log(tested.indexOf(pattern));
+    let ans = Kmp(tested, "gl-warp");
+    // console.log(ans);
+
+    tested = tested.substring(ans[0],tested.length - 1);
+
+    ans = Kmp(tested, "<li data-sku");
+    console.log(ans, ans.length);
+    // console.log(tested.indexOf(pattern));
     return 0;
 })();
