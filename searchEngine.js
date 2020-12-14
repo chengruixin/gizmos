@@ -11,12 +11,12 @@ const fs = require('fs');
     // console.log(getShingles("abcdefg", 5));
 
     try {
-        const queryContent = "food";
+        const queryContent = "dc2e";
         const CASE_ONE = "./case.100.8.txt";
         const CASE_TWO = "./case.1000.12.txt";
         const CASE_THREE = "./case.10000.16.txt";
         const CASE_REAL = "./case.real1.txt";
-        const rawData = fs.readFileSync(CASE_REAL, 'utf8')
+        const rawData = fs.readFileSync(CASE_ONE, 'utf8')
         const strings = rawData.split("\n");
         
         const exactMatching = [];
