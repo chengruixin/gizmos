@@ -1,0 +1,57 @@
+const { KmpReturnBoolean } = require("./searchingAlgo/Kmp");
+const minDistance = require("./searchingAlgo/minDistance");
+const getShingles = require("./utils/getShingles");
+const fuzzyMatch = require("./searchingAlgo/fuzzyMatch");
+const fs = require('fs');
+
+
+(function main(){
+    // console.log(KmpReturnBoolean("abc", "d"));
+    // console.log( minDistance("abc", "d")  );
+    // console.log(getShingles("abcdefg", 5));
+
+    try {
+        const queryContent = "food";
+        const CASE_ONE = "./case.100.8.txt";
+        const CASE_TWO = "./case.1000.12.txt";
+        const CASE_THREE = "./case.10000.16.txt";
+        const CASE_REAL = "./case.real1.txt";
+        const rawData = fs.readFileSync(CASE_REAL, 'utf8')
+        const strings = rawData.split("\n");
+        
+        const exactMatching = [];
+        const uncertainMathcing = [];
+        //find exact match
+        for(let i = 0; i < strings.length; i++){
+            let comparedString = strings[i].toLowerCase();
+            if(KmpReturnBoolean(comparedString, queryContent))
+                exactMatching.push(i);
+            else{
+                let distance = fuzzyMatch(comparedString, queryContent);
+                uncertainMathcing.push({
+                    index : i,
+                    distance : distance
+                })
+            }
+        }
+
+        console.log("\nPrinting exact matchings:");
+
+        for(let i = 0; i < exactMatching.length; i++){
+            console.log(strings[exactMatching[i]]);
+        }
+
+        const threshold = Math.floor(queryContent.length/3);
+        console.log("\nPrinting relative exact matchings:")
+        for(let i = 0; i < uncertainMathcing.length; i++){
+            if(uncertainMathcing[i].distance <= threshold){
+                console.log(strings[uncertainMathcing[i].index]);
+            }
+        }
+        
+
+    } catch (err) {
+        console.error(err)
+    }
+
+})();
