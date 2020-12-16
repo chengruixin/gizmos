@@ -11,12 +11,12 @@ const fs = require('fs');
     // console.log(getShingles("abcdefg", 5));
 
     try {
-        const queryContent = "food";
+        const queryContent = "m1yb";
         const CASE_ONE = "./case.100.8.txt";
         const CASE_TWO = "./case.1000.12.txt";
         const CASE_THREE = "./case.10000.16.txt";
         const CASE_REAL = "./case.real1.txt";
-        const rawData = fs.readFileSync(CASE_REAL, 'utf8')
+        const rawData = fs.readFileSync(CASE_THREE, 'utf8')
         const strings = rawData.split("\n");
         
         const exactMatching = [];
@@ -42,10 +42,13 @@ const fs = require('fs');
         }
 
         const threshold = Math.floor(queryContent.length/3);
-        console.log("\nPrinting relative exact matchings:")
+        console.log("Printing relative exact matchings:\n")
         for(let i = 0; i < uncertainMathcing.length; i++){
             if(uncertainMathcing[i].distance <= threshold){
-                console.log(strings[uncertainMathcing[i].index]);
+                let str = strings[uncertainMathcing[i].index].split("\r")[0];
+                let dis = JSON.stringify(uncertainMathcing[i].distance);
+                
+                console.log(str, dis);
             }
         }
         
