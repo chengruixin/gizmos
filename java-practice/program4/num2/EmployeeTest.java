@@ -14,11 +14,11 @@ public class EmployeeTest {
         emperor.printAllInfo();
         emperor.printAllThisInfo();
 
-        emperor.toChange = "jhell";
-        System.out.println(emperor.toChange);
-        System.out.println(gangster.toChange);
-        gangster.toChange = "fdfd";
-        System.out.println(emperor.toChange);
+        Employee.toChange = "jhell";
+        System.out.println(Employee.toChange);
+        System.out.println(Employee.toChange);
+        Employee.toChange = "fdfd";
+        System.out.println(Employee.toChange);
         Employee.printName();
     }
 }
